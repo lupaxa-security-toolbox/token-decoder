@@ -1,0 +1,138 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lupaxa-token-decoder"
+dynamic = ["version"]
+description = "Decode and inspect JWTs and other common token formats."
+readme = "README.md"
+license = { file = "LICENCE" }
+requires-python = ">=3.11"
+authors = [
+  { name = "The Lupaxa Project" },
+]
+keywords = [
+  "jwt",
+  "token",
+  "decoder",
+  "cli",
+  "security",
+]
+dependencies = []
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: MacOS",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Security",
+  "Topic :: Utilities",
+]
+[project.urls]
+Homepage = "https://github.com/lupaxa-security-toolbox/token-decoder"
+Repository = "https://github.com/lupaxa-security-toolbox/token-decoder"
+Issues = "https://github.com/lupaxa-security-toolbox/token-decoder/issues"
+
+[project.scripts]
+token-decoder = "lupaxa.token_decoder.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "bump-my-version>=1.2.0",
+  "mypy>=1.12.0",
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+  "ruff>=0.6.0",
+]
+test = [
+  "pytest>=8.0",
+  "pytest-cov>=5.0",
+]
+
+[tool.hatch.version]
+path = "src/lupaxa/token_decoder/version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/**",
+  "README.md",
+  "LICENCE",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lupaxa"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+  "E",
+  "F",
+  "I",
+  "B",
+  "S",
+  "UP",
+  "SIM",
+  "C4",
+  "ISC",
+  "D",
+  "ANN",
+  "PT",
+]
+ignore = [
+  "D100",
+  "D104",
+  "D107",
+  "D200",
+  "D201",
+  "D202",
+  "D203",
+  "D204",
+  "D205",
+  "D206",
+  "D207",
+  "D208",
+  "D209",
+  "D210",
+  "D211",
+  "D212",
+  "D213",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "ANN001", "ANN201", "D101", "D102", "D103", "D105"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.basedpyright]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_configs = true
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+follow_imports = "normal"
+ignore_missing_imports = true
+packages = ["lupaxa.token_decoder"]
+mypy_path = "src"
+explicit_package_bases = true
+namespace_packages = true
+
+[tool.pytest.ini_options]
+addopts = "-ra --disable-warnings"
+testpaths = ["tests"]
+pythonpath = ["src"]
