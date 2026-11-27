@@ -32,6 +32,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Topic :: Security",
   "Topic :: Utilities",
 ]
@@ -70,7 +71,7 @@ include = [
 packages = ["src/lupaxa"]
 
 [tool.ruff]
-line-length = 120
+line-length = 200
 target-version = "py311"
 src = ["src", "tests"]
 

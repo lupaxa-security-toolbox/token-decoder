@@ -13,15 +13,8 @@ from lupaxa.token_decoder.version import __version__
 
 def build_parser() -> argparse.ArgumentParser:
     """Return the command-line parser."""
-    parser = argparse.ArgumentParser(
-        prog="token-decoder",
-        description="Decode JWTs and other token formats. Signatures are not verified.",
-    )
-    parser.add_argument(
-        "token",
-        nargs="?",
-        help="Token to decode. Omit to read stdin, or to prompt when stdin is a terminal. Use - for stdin.",
-    )
+    parser = argparse.ArgumentParser(prog="token-decoder", description="Decode JWTs and other token formats. Signatures are not verified.")
+    parser.add_argument("token", nargs="?", help="Token to decode. Omit to read stdin, or to prompt when stdin is a terminal. Use - for stdin.")
     parser.add_argument("--version", action="version", version=__version__)
     return parser
 
